@@ -1,0 +1,52 @@
+CS323 Assignment 1 Documentation
+--Haowen Yong, Aidin Tavassoli, Balwinder Singh Hayer
+
+1. Problem Statement
+This function is a lexical analyzer. It receives a text file and it analyzes each individual words within that file.
+It then returns the identity of each word. 
+For example: 
+text file: int a, b, c;
+	   a = b + c;
+results: int keyword
+	a identifier
+	, separator
+	b identifier
+	, separator
+	c identifier
+	; separator
+	a identifer;
+	= operator
+	...
+
+2. How to use
+in a terminal, use the following line to compile the file:
+	g++ -o la lexicalanalyzer.cpp
+then use the following line to execute the program
+	./la <insert text file you want to analyze>
+
+for example: you want to analyze a file called "apple.txt", then do the following
+	g++ -o la lexical analyzer.cpp
+	./la apple.txt
+
+3. Design
+The program uses fstream to take in the text file which the user provided. Then the program uses a while loop to loop 
+through the entire file and reading the file character by charcter using .get().
+After reading a character, the program will first test to see if the character is a punctuation(operator or separator).
+The program checks that by using the lists of operators and separators that were hardcoded into the program, and then
+the program will return the character and its identity.
+If the character is not a punctuation, it will be taken into an if statement to see if it's alphanumeric. If it is, it 
+will then be added to a char array. The program will repeat this until it encounted an empty space which means that a 
+word has been recorded in the char array. The word within the char array will be analyzed in a similar fashion as the
+punctuations mentioned above. In the end, the program will return a list of words from the text file and their identities.
+
+4. Limitations
+Current limilations include: the list of operators, separators and keywords are hardcoded, meaning if these lists don't
+include everthing each catagory contains, the program will identify a word and put it into the wrong category.
+For example, if '(' was not in the list of separators or operators, it will be identified as an identifier.
+
+These lists need to be expanded in the future to make sure the program works with as many text files as possible
+
+5. Shortcomings
+Since this is the first iteration, we are not sure if we have implemented a finite state machine. This will be worked on
+in the next week before the final due date alongside the physical drawing of the FSM. Hopefully by the final due date, 
+we will be able to turn in both the final iteration of the program and our FSM graph.
